@@ -1,112 +1,86 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-	<title>My website unlocked</title>
-	<link rel="stylesheet" type="text/css" href="css/styles.css">
-</head>
-
-<body>
-	<header id="main-header">
-		<div class="container">
-			<h1>My Simple website</h1>
-		</div>
-	</header>
-		
-
-	<nav id="navbar">
-		<div class="container">
-			<ul>
-				<li>
-					<a href="#">Home</a>
-				</li>
-				<li>
-					<a href="#">About</a>
-				</li>
-				<li>
-					<a href="#">Services</a>
-				</li>
-				<li>
-					<a href="#">Contact</a>
-				</li>			
-			</ul>
-		</div>
-	</nav>
-		
-	<section id="showcase">
-		<div class="container">
-			<h1>
-				i wnna be
-			</h1>
-		</div>
-	</section>
-
-	<div class="container">
-		<section id="main">
-			<h1>Welcome</h1>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-		</section>
-		<aside id="sidebar">
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud </p>
-		</aside>
-	</div>
-
-	<footer id="main-footer">
-		<p>Copyright &copy; 2017 Kun Web Services</p>
-	</footer>
-
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code Converter</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 50px;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Separate 40 Digits</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 50px;
+    }
 
-        #output {
-            margin-top: 20px;
-        }
-    </style>
+    input {
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
 </head>
 <body>
 
-    <h2>Code Converter</h2>
+  <h1>KCT Separator</h1>
 
-    <label for="inputCode">Enter Code:</label>
-    <textarea id="inputCode" rows="4" cols="50"></textarea>
+  <input type="text" id="inputDigits" placeholder="Enter 40 digits">
+  <button onclick="separateDigits()">Separate</button>
 
-    <button onclick="convertCode()">Convert</button>
+  <div id="result"></div>
+  <button onclick="copyToClipboard()">Copy to Clipboard</button>
 
-    <div id="output"></div>
+  <script>
+    let first20Digits, last20Digits;
 
-    <script>
-        function convertCode() {
-            const inputCode = document.getElementById('inputCode').value;
-            const codes = inputCode.split(' ');
+    function separateDigits() {
+      // Get input value and remove white spaces
+      let inputDigits = document.getElementById('inputDigits').value.replace(/\s/g, '').trim();
 
-            let outputText = '';
+      // Check if the input is exactly 40 digits
+      if (inputDigits.length === 40 && /^\d+$/.test(inputDigits)) {
+        // Separate into first and last 20 digits
+        first20Digits = inputDigits.slice(0, 20);
+        last20Digits = inputDigits.slice(20);
 
-            codes.forEach((code, index) => {
-                outputText += `code${index + 1}: ${code} `;
-            });
+        // Display the result
+        document.getElementById('result').innerText = `KCT1: ${first20Digits}\nKCT2: ${last20Digits}`;
+      } else {
+        // Display an error message if the input is not valid
+        document.getElementById('result').innerText = 'Invalid input. Please enter exactly 40 digits.';
+      }
+    }
 
-            document.getElementById('output').innerText = outputText.trim();
-        }
-    </script>
+    function copyToClipboard() {
+      // Create a textarea element
+      const textarea = document.createElement('textarea');
+
+      // Set the value of the textarea
+      textarea.value = `KCT1: ${first20Digits}\nKCT2: ${last20Digits}`;
+
+      // Append the textarea to the body
+      document.body.appendChild(textarea);
+
+      // Select the text in the textarea
+      textarea.select();
+
+      // Copy the selected text to the clipboard
+      document.execCommand('copy');
+
+      // Remove the textarea from the body
+      document.body.removeChild(textarea);
+
+      alert('Text copied to clipboard!');
+    }
+  </script>
 
 </body>
 </html>
