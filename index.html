@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
 	<title>My website</title>
@@ -60,6 +60,53 @@
 	<footer id="main-footer">
 		<p>Copyright &copy; 2017 Kun Web Services</p>
 	</footer>
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        #output {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Code Converter</h2>
+
+    <label for="inputCode">Enter Code:</label>
+    <textarea id="inputCode" rows="4" cols="50"></textarea>
+
+    <button onclick="convertCode()">Convert</button>
+
+    <div id="output"></div>
+
+    <script>
+        function convertCode() {
+            const inputCode = document.getElementById('inputCode').value;
+            const codes = inputCode.split(' ');
+
+            let outputText = '';
+
+            codes.forEach((code, index) => {
+                outputText += `code${index + 1}: ${code} `;
+            });
+
+            document.getElementById('output').innerText = outputText.trim();
+        }
+    </script>
 
 </body>
 </html>
