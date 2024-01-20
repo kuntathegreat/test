@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Separate 40 Digits</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 50px;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>KCT Separator</h1>
+
+  <input type="text" id="inputDigits" placeholder="Enter 40 digits">
+  <button onclick="separateDigits()">Separate</button>
+
+  <div id="result"></div>
+  <button onclick="copyToClipboard()">Copy to Clipboard</button>
+
+  <script>
+    let first20Digits, last20Digits;
+
+    function separateDigits() {
+      // Get input value and remove white spaces
+      let inputDigits = document.getElementById('inputDigits').value.replace(/\s/g, '').trim();
+
+      // Check if the input is exactly 40 digits
+      if (inputDigits.length === 40 && /^\d+$/.test(inputDigits)) {
+        // Separate into first and last 20 digits
+        first20Digits = inputDigits.slice(0, 20);
+        last20Digits = inputDigits.slice(20);
+
+        // Display the result
+        document.getElementById('result').innerText = `KCT1: ${first20Digits}\nKCT2: ${last20Digits}`;
+      } else {
+        // Display an error message if the input is not valid
+        document.getElementById('result').innerText = 'Invalid input. Please enter exactly 40 digits.';
+      }
+    }
+
+    function copyToClipboard() {
+      // Create a textarea element
+      const textarea = document.createElement('textarea');
+
+      // Set the value of the textarea
+      textarea.value = `KCT1: ${first20Digits}\nKCT2: ${last20Digits}`;
+
+      // Append the textarea to the body
+      document.body.appendChild(textarea);
+
+      // Select the text in the textarea
+      textarea.select();
+
+      // Copy the selected text to the clipboard
+      document.execCommand('copy');
+
+      // Remove the textarea from the body
+      document.body.removeChild(textarea);
+
+      alert('Text copied to clipboard!');
+    }
+  </script>
+
+</body>
+</html>
