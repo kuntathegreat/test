@@ -39,7 +39,10 @@
   <button onclick="copyToClipboard()">Copy to Clipboard</button>
 
   <script>
-    let first20Digits, last20Digits;
+    // let first20Digits, last20Digits;
+    let first4Digits, second4Digits, third4Digits, fourth4Digits, fifth4Digits;
+    let sixth4Digits, seventh4Digits, eighth4Digits, ninth4Digits, tenth4Digits;
+
 
     function separateDigits() {
       // Get input value and remove white spaces
@@ -48,11 +51,28 @@
       // Check if the input is exactly 40 digits
       if (inputDigits.length === 40 && /^\d+$/.test(inputDigits)) {
         // Separate into first and last 20 digits
-        first20Digits = inputDigits.slice(0, 20);
-        last20Digits = inputDigits.slice(20);
+        first4Digits = inputDigits.slice(0,4);
+        second4Digits = inputDigits.slice(4,8);
+        third4Digits = inputDigits.slice(8,12);
+        fourth4Digits = inputDigits.slice(12,16);
+        fifth4Digits = inputDigits.slice(16,20);
+        sixth4Digits = inputDigits.slice(20,24);
+        seventh4Digits = inputDigits.slice(24,28);
+        eighth4Digits = inputDigits.slice(28,32);
+        ninth4Digits = inputDigits.slice(32,36);
+        tenth4Digits = inputDigits.slice(36,40);
+        
+        
+        // first4Digits = inputDigits.slice(0,4);
+        
+        // first20Digits = inputDigits.slice(0, 20);
+        
+        // last20Digits = inputDigits.slice(20);
 
         // Display the result
-        document.getElementById('result').innerText = `KCT1: ${first20Digits}\nKCT2: ${last20Digits}`;
+        document.getElementById('result').innerText = `KCT1: ${first4Digits} ${second4Digits} ${third4Digits} ${fourth4Digits} ${fifth4Digits}
+        \nKCT2:  ${sixth4Digits} ${seventh4Digits} ${eighth4Digits} ${ninth4Digits} ${tenth4Digits}
+`;
       } else {
         // Display an error message if the input is not valid
         document.getElementById('result').innerText = 'Invalid input. Please enter exactly 40 digits.';
@@ -64,7 +84,9 @@
       const textarea = document.createElement('textarea');
 
       // Set the value of the textarea
-      textarea.value = `KCT1: ${first20Digits}\nKCT2: ${last20Digits}`;
+      textarea.value = `1st Kct: ${first4Digits} ${second4Digits} ${third4Digits} ${fourth4Digits} ${fourth4Digits}
+         ${fifth4Digits} \n2nd Kct:  ${sixth4Digits} ${seventh4Digits} ${eighth4Digits} ${ninth4Digits} ${tenth4Digits}
+`;
 
       // Append the textarea to the body
       document.body.appendChild(textarea);
