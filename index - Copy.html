@@ -14,20 +14,13 @@
         h1 {
             text-align: center;
             margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        h1 img {
-            width: 50px; /* Adjust the size of the logo as needed */
-            margin-right: 10px; /* Add some spacing between the logo and text */
         }
         label {
             font-weight: bold;
             display: block;
             margin-bottom: 5px;
         }
-        input[type="number"] {
+        select {
             width: 100%;
             padding: 10px;
             margin-bottom: 20px;
@@ -56,18 +49,21 @@
 </head>
 <body>
 
-    <h1>
-        <img src=https://i0.wp.com/businesspost.ng/wp-content/uploads/2020/02/benin-electricity-distribution-company-BEDC.png?fit=800%2C600&ssl=1" alt="Utility Company Logo">
-        Electricity Consumption Calculator
-    </h1>
+    <h1>Electricity Consumption Calculator</h1>
 
     <div>
-        <label for="hours">Number of Hours:</label>
-        <input type="number" id="hours" placeholder="Enter hours">
+        <label for="band">Select Band:</label>
+        <select id="band">
+            <option value="20">Band A (20 hours)</option>
+            <option value="16">Band B (16 hours)</option>
+            <option value="12">Band C (12 hours)</option>
+            <option value="8">Band D (8 hours)</option>
+            <option value="4">Band E (4 hours)</option>
+        </select>
     </div>
 
     <div>
-        <label for="amps">Number of Amps:</label>
+        <label for="amps">Measured Amps:</label>
         <input type="number" id="amps" placeholder="Enter amps">
     </div>
 
@@ -82,10 +78,11 @@
 
     <script>
         function calculateConsumption() {
-            var hours = parseFloat(document.getElementById('hours').value);
+            var band = document.getElementById('band').value;
             var amps = parseFloat(document.getElementById('amps').value);
             var voltage = parseFloat(document.getElementById('voltage').value);
 
+            var hours = parseFloat(band);
             var consumption = hours * amps * voltage / 1000; // Calculate consumption in kWh(Units)
 
             var weeklyCost = 7 * 56 * consumption.toFixed(2); // Calculate weekly cost
