@@ -30,4 +30,63 @@
             width: 100%;
             padding: 10px;
             background-color: #4CAF50;
-          
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Electricity Consumption Calculator</h1>
+
+    <div>
+        <label for="hours">Number of Hours:</label>
+        <input type="number" id="hours" placeholder="Enter hours">
+    </div>
+
+    <div>
+        <label for="amps">Number of Amps:</label>
+        <input type="number" id="amps" placeholder="Enter amps">
+    </div>
+
+    <div>
+        <label for="voltage">Voltage:</label>
+        <input type="number" id="voltage" placeholder="Enter voltage">
+    </div>
+
+    <button onclick="calculateConsumption()">Calculate</button>
+
+    <div id="result"></div>
+
+    <script>
+        function calculateConsumption() {
+            var hours = parseFloat(document.getElementById('hours').value);
+            var amps = parseFloat(document.getElementById('amps').value);
+            var voltage = parseFloat(document.getElementById('voltage').value);
+
+            var consumption = hours * amps * voltage / 1000; // Calculate consumption in kWh(Units)
+
+            var weeklyCost = 7 * 56 * consumption.toFixed(2); // Calculate weekly cost
+            var monthlyCost = 30 * 56 * consumption.toFixed(2); // Calculate monthly cost
+
+            document.getElementById('result').innerHTML = "<p><strong>Electricity Consumption:</strong> " + consumption.toFixed(2) + " Units</p>" +
+                "<p><strong>This translates to:</strong></p>" +
+                "<p><strong>Weekly Cost:</strong> " + weeklyCost.toFixed(2) + " Naira</p>" +
+                "<p><strong>Monthly Cost:</strong> " + monthlyCost.toFixed(2) + " Naira</p>";
+        }
+    </script>
+
+</body>
+</html>
