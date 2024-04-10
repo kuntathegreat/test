@@ -99,21 +99,24 @@
 
             var hours = parseFloat(band);
             var consumption;
+            var m_consumption;
+
+            var consumption =  hours * amps * voltage / 1000;
 
             if (band === '20') {
-                consumption = 245 * hours * amps * voltage / 1000;
+                b_consumption = 245 * consumption;
             } else if (band === '16') {
-                consumption = 65 * hours * amps * voltage / 1000;
+                b_consumption = 65 * consumption;
             } else if (band === '14') {
-                consumption = 60 * hours * amps * voltage / 1000;
+                b_consumption = 60 * consumption;
             } else if (band === '12') {
-                consumption = 56 * hours * amps * voltage / 1000;
+                b_consumption = 56 * consumption;
             } else if (band === '4') {
-                consumption = 41 * hours * amps * voltage / 1000;
+                b_consumption = 41 * consumption;
             }
 
-            var weeklyCost = 7 * consumption;
-            var monthlyCost = 30 * consumption;
+            var weeklyCost = 7 * b_consumption;
+            var monthlyCost = 30 * b_consumption;
 
             document.getElementById('result').innerHTML = "<p><strong>Electricity Consumption:</strong> " + numberWithCommas(consumption.toFixed(2)) + " Units</p>" +
                 "<p><strong>This translates to:</strong></p>" +
