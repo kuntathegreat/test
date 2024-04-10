@@ -58,9 +58,13 @@
 
             var consumption = hours * amps * voltage / 1000; // Calculate consumption in kWh(Units)
 
-            document.getElementById('result').innerText = "Electricity Consumption: " + consumption.toFixed(2) + " Units"
-                +\n "This translates to: "\n + 7*56*consumption.toFixed(2) + " Naira weekly"\n +
-                     30*56*consumption.toFixed(2) + " Naira monthly";
+            var weeklyCost = 7 * 56 * consumption.toFixed(2); // Calculate weekly cost
+            var monthlyCost = 30 * 56 * consumption.toFixed(2); // Calculate monthly cost
+
+            document.getElementById('result').innerText = "Electricity Consumption: " + consumption.toFixed(2) + " Units" +
+                "\nThis translates to:" +
+                "\nWeekly Cost: " + weeklyCost.toFixed(2) + " Naira" +
+                "\nMonthly Cost: " + monthlyCost.toFixed(2) + " Naira";
         }
     </script>
 
