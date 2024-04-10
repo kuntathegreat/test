@@ -20,11 +20,15 @@
             display: block;
             margin-bottom: 5px;
         }
-        select {
-            width: 100%;
+        select,
+        input {
+            width: calc(100% - 22px);
             padding: 10px;
             margin-bottom: 20px;
             box-sizing: border-box;
+        }
+        select {
+            width: 100%;
         }
         button {
             width: 100%;
@@ -45,9 +49,16 @@
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
+        #company-logo {
+            display: block;
+            margin: 0 auto;
+            width: 200px;
+        }
     </style>
 </head>
 <body>
+
+    <img src="company-logo.png" alt="Utility Company Logo" id="company-logo">
 
     <h1>Electricity Consumption Calculator</h1>
 
@@ -56,14 +67,14 @@
         <select id="band">
             <option value="20">Band A (20 hours)</option>
             <option value="16">Band B (16 hours)</option>
-            <option value="12">Band C (12 hours)</option>
-            <option value="8">Band D (8 hours)</option>
+            <option value="14">Band C (14 hours)</option>
+            <option value="12">Band D (12 hours)</option>
             <option value="4">Band E (4 hours)</option>
         </select>
     </div>
 
     <div>
-        <label for="amps">Measured Amps:</label>
+        <label for="amps">Number of Amps:</label>
         <input type="number" id="amps" placeholder="Enter amps">
     </div>
 
@@ -77,6 +88,10 @@
     <div id="result"></div>
 
     <script>
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
         function calculateConsumption() {
             var band = document.getElementById('band').value;
             var amps = parseFloat(document.getElementById('amps').value);
@@ -88,10 +103,10 @@
             var weeklyCost = 7 * 56 * consumption.toFixed(2); // Calculate weekly cost
             var monthlyCost = 30 * 56 * consumption.toFixed(2); // Calculate monthly cost
 
-            document.getElementById('result').innerHTML = "<p><strong>Electricity Consumption:</strong> " + consumption.toFixed(2) + " Units</p>" +
+            document.getElementById('result').innerHTML = "<p><strong>Electricity Consumption:</strong> " + numberWithCommas(consumption.toFixed(2)) + " Units</p>" +
                 "<p><strong>This translates to:</strong></p>" +
-                "<p><strong>Weekly Cost:</strong> " + weeklyCost.toFixed(2) + " Naira</p>" +
-                "<p><strong>Monthly Cost:</strong> " + monthlyCost.toFixed(2) + " Naira</p>";
+                "<p><strong>Weekly Cost:</strong> " + numberWithCommas(weeklyCost.toFixed(2)) + " Naira</p>" +
+                "<p><strong>Monthly Cost:</strong> " + numberWithCommas(monthlyCost.toFixed(2)) + " Naira</p>";
         }
     </script>
 
