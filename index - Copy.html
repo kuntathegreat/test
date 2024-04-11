@@ -104,15 +104,15 @@
             var consumption =  hours * amps * voltage / 1000;
 
             if (band === '20') {
-                b_consumption = 245 * consumption;
+                b_consumption = 225 * consumption;
             } else if (band === '16') {
-                b_consumption = 65 * consumption;
+                b_consumption = 68.56 * consumption;
             } else if (band === '14') {
-                b_consumption = 60 * consumption;
+                b_consumption = 56.91 * consumption;
             } else if (band === '12') {
-                b_consumption = 56 * consumption;
+                b_consumption = 41.21 * consumption;
             } else if (band === '4') {
-                b_consumption = 41 * consumption;
+                b_consumption = 41.21 * consumption;
             }
 
             var weeklyCost = 7 * b_consumption;
